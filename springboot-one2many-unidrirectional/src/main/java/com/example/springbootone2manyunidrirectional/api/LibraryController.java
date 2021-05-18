@@ -31,7 +31,7 @@ public class LibraryController {
     }
     @DeleteMapping("/{id}")
     public ResponseEntity<Library> deleteLibrary(@PathVariable Integer id){
-        //check xem co ton tai id khong
+        //check xem co ton tai id có tồn tại không
         Optional<Library> libraryOptional = libraryRepository.findById(id);
         if (!libraryOptional.isPresent()){
             return ResponseEntity.unprocessableEntity().build();
