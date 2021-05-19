@@ -1,0 +1,24 @@
+package com.example.application.jpa;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Data;
+
+import javax.persistence.*;
+import java.util.Date;
+
+@Entity
+@Data
+public class BookPublisher {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    @ManyToOne
+    @JoinColumn(name = "books_id")
+    @JsonIgnoreProperties("bookPublishers")
+    private Book book;
+    @ManyToOne
+    @JoinColumn(name = "publisher_id")
+    @JsonIgnoreProperties("bookPublishers")
+    private Publisher publisher;
+    private Date publisherDate;
+}
