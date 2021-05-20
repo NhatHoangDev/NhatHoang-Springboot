@@ -1,2 +1,4 @@
-package com.example.application.dto;public class PublisherDto {
+package com.example.application.dto;
+
+public class PublisherDto {
 }

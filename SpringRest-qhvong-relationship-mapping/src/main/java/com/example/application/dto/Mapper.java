@@ -1,2 +1,6 @@
-package com.example.application.dto;public interface Mapper {
+package com.example.application.dto;
+
+@org.mapstruct.Mapper
+public interface Mapper {
+
 }

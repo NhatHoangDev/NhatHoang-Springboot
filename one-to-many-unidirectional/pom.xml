@@ -15,6 +15,8 @@
     <description>JPA and Hibernate One To Many Unidirectional Mapping in Spring Boot REST APIs</description>
     <properties>
         <java.version>1.8</java.version>
+        <springfox.swagger.ui.version>2.9.2</springfox.swagger.ui.version>
+        <springfox.swagger2.version>2.9.2</springfox.swagger2.version>
     </properties>
     <dependencies>
         <dependency>
@@ -51,6 +53,18 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <!--swagger-->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>${springfox.swagger.ui.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>${springfox.swagger2.version}</version>
+        </dependency>
+
     </dependencies>
 
     <build>

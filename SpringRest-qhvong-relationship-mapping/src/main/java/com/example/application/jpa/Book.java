@@ -10,11 +10,9 @@ import java.util.Set;
 
 @Data
 @Entity
-@EqualsAndHashCode(exclude = {"category", "authors", "bookPublishers"})
-public class Book {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+@EqualsAndHashCode(exclude = {"category", "authors", "bookPublishers"}, callSuper = false)
+public class Book extends AbstractModel {
+
     private String name;
     private String description;
     @ManyToOne
@@ -23,12 +21,11 @@ public class Book {
     private Category category;
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "book_author", joinColumns = @JoinColumn(name = "book_id", referencedColumnName = "id"),
-        inverseJoinColumns = @JoinColumn(name = "author_id", referencedColumnName = "id")
-    )
-    @JsonIgnoreProperties("books")
+            inverseJoinColumns = @JoinColumn(name = "author_id", referencedColumnName = "id"))
+    /*@JsonIgnoreProperties("books")*/
     private Set<Author> authors;
     @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonIgnoreProperties("books")
-    private Set<BookPublisher> bookPublishers= new HashSet<>();
+    /* @JsonIgnoreProperties("books")*/
+    private Set<BookPublisher> bookPublishers = new HashSet<>();
 
 }

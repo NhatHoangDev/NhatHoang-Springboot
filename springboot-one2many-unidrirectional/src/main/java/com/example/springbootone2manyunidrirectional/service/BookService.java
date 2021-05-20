@@ -8,10 +8,12 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+
 @Service
-public class BookService implements IBookService{
+public class BookService implements IBookService {
     @Autowired
     private IBookRepository bookRepository;
+
     @Override
     public List<Book> findAll() {
         return bookRepository.findAll();
@@ -34,6 +36,6 @@ public class BookService implements IBookService{
 
     @Override
     public int checkId(Integer id) {
-       return 0;
+        return 0;
     }
 }

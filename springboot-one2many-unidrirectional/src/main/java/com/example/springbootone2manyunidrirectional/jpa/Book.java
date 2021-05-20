@@ -16,6 +16,7 @@ public class Book {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Library library;
+
     public int getId() {
         return id;
     }
@@ -31,6 +32,7 @@ public class Book {
     public void setName(String name) {
         this.name = name;
     }
+
     public Library getLibrary() {
         return library;
     }

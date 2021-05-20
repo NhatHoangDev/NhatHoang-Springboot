@@ -8,15 +8,13 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
+@EqualsAndHashCode(callSuper = false)
 @Entity
 @Data
-@EqualsAndHashCode(exclude = "bookPublishers")
-public class Publisher {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+@JsonIgnoreProperties("publisher")
+public class Publisher extends AbstractModel {
     private String name;
     @OneToMany(mappedBy = "publisher", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonIgnoreProperties("publishers")
-    private Set<BookPublisher> bookPublisherSet = new HashSet<>();
+
+    private Set<BookPublisher> bookPublishers = new HashSet<>();
 }

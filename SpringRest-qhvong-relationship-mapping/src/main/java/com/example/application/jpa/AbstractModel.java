@@ -12,7 +12,7 @@ import java.util.Date;
 
 @Entity
 @Data
-public class Abstract {
+public class AbstractModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;

@@ -21,10 +21,11 @@ public class BookController {
     @Autowired
     private IBookRepository bookRepository;
     private ILibraryRepository libraryRepository;
+
     @PostMapping
-    public ResponseEntity<Book> createBook(@Valid @RequestBody Book book ){
+    public ResponseEntity<Book> createBook(@Valid @RequestBody Book book) {
         Optional<Library> libraryOptional = libraryRepository.findById(book.getLibrary().getId());
-        if (!libraryOptional.isPresent()){
+        if (!libraryOptional.isPresent()) {
             return ResponseEntity.unprocessableEntity().build();
         }
         book.setLibrary(libraryOptional.get());
@@ -35,8 +36,9 @@ public class BookController {
                 .buildAndExpand(bookSaved.getId()).toUri();
         return ResponseEntity.created(location).body(bookSaved);
     }
+
     @GetMapping("/")
-    public ResponseEntity<Page<Book>> getAllBook(Pageable pageable){
+    public ResponseEntity<Page<Book>> getAllBook(Pageable pageable) {
         return ResponseEntity.ok(bookRepository.findAll(pageable));
     }
 }
