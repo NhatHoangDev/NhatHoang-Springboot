@@ -53,12 +53,14 @@ var List = Vue.extend({
         employeeService.findAll(r => {this.employees = r.data; employees = r.data})
     }
 });
+
 var Employee = Vue.extend({
     template: '#employee',
     data: function () {
         return {employee: findEmployee(this.$route.params.employee_id)};
     }
 });
+
 var EmployeeEdit = Vue.extend({
     template: '#employee-edit',
     data: function () {
@@ -70,6 +72,7 @@ var EmployeeEdit = Vue.extend({
         }
     }
 });
+
 var AddEmployee = Vue.extend({
     template: '#add-employee',
     data() {
@@ -88,6 +91,7 @@ var router = new VueRouter({
     routes: [
         {path: '/', component: List},
         {path: '/add-employee', component: AddEmployee},
+        {path: '/employee/:employee_id', component: Employee, name: 'employee'},
         {path: '/employee/:employee_id/edit', component: EmployeeEdit, name: 'employee-edit'}]
 });
 
