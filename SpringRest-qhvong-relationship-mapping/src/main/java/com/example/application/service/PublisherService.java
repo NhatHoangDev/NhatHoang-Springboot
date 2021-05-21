@@ -2,6 +2,7 @@ package com.example.application.service;
 
 import com.example.application.jpa.Publisher;
 import com.example.application.repository.IPublisherReposiroty;
+import com.example.application.service.IService.IPublisherService;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;

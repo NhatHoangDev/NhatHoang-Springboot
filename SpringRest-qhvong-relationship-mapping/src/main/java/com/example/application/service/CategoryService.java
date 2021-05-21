@@ -2,6 +2,7 @@ package com.example.application.service;
 
 import com.example.application.jpa.Category;
 import com.example.application.repository.ICategoryRepository;
+import com.example.application.service.IService.ICategoryService;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;

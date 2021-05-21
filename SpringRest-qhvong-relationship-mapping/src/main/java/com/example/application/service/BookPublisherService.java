@@ -2,11 +2,11 @@ package com.example.application.service;
 
 import com.example.application.jpa.BookPublisher;
 import com.example.application.repository.IBookPublisherRepository;
+import com.example.application.service.IService.IBookPublisherService;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
 import java.util.Optional;
-
 @RequiredArgsConstructor
 public class BookPublisherService implements IBookPublisherService {
     private final IBookPublisherRepository bookPublisherRepository;
