@@ -1,13 +1,16 @@
 package com.example.jparelationships.jpa;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-
+@AllArgsConstructor
+@NoArgsConstructor
 @Data
 @Entity
 @EqualsAndHashCode(exclude = "publishers")
@@ -32,4 +35,5 @@ public class Book {
         this.publishers = Stream.of(publishers).collect(Collectors.toSet());
         this.publishers.forEach(x -> x.getBooks().add(this));
     }
+
 }

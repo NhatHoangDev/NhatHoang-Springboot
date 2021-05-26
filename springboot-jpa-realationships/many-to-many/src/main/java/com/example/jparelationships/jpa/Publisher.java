@@ -1,11 +1,12 @@
 package com.example.jparelationships.jpa;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
-
+@NoArgsConstructor
 @Entity
 @Data
 public class Publisher {
@@ -19,4 +20,5 @@ public class Publisher {
     public Publisher(String name) {
         this.name = name;
     }
+
 }
