@@ -9,6 +9,7 @@ import javax.persistence.*;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -26,10 +27,11 @@ public class Book {
     @ManyToMany(cascade = CascadeType.ALL)
 
     @JoinTable(name = "book_publisher",
-                joinColumns = @JoinColumn(name = "book_id", referencedColumnName = "id"),
-                inverseJoinColumns = @JoinColumn(name = "publisher_id", referencedColumnName = "id")
+            joinColumns = @JoinColumn(name = "book_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "publisher_id", referencedColumnName = "id")
     )
     private Set<Publisher> publishers;
+
     public Book(String name, Publisher... publishers) {
         this.name = name;
         this.publishers = Stream.of(publishers).collect(Collectors.toSet());

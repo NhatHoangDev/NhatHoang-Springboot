@@ -14,7 +14,7 @@ import java.util.Set;
 @Data
 @Entity
 @EqualsAndHashCode(exclude = {"books"}, callSuper = false)
-public class Category extends Abstract{
+public class Category extends Abstract {
 
     private String name;
 

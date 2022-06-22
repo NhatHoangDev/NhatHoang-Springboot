@@ -9,15 +9,15 @@ import java.util.Set;
 
 @Data
 @Entity
-@EqualsAndHashCode(exclude = {"book"})
-public class Author extends Abstract{
+@EqualsAndHashCode(exclude = {"books"}, callSuper = false)
+public class Author extends Abstract {
 
     private String name;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "book_author",
-        joinColumns = @JoinColumn(name = "author_id", referencedColumnName = "id"),
-        inverseJoinColumns = @JoinColumn(name = "book_id", referencedColumnName = "id"))
+            joinColumns = @JoinColumn(name = "author_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "book_id", referencedColumnName = "id"))
     @JsonIgnoreProperties("authors")
     private Set<Book> books;
 }

@@ -11,5 +11,6 @@ import java.util.Optional;
 @Repository
 public interface ICommentRepository extends JpaRepository<Comment, Long> {
     Page<Comment> findByPostId(Long id, Pageable pageable);
+
     Optional<Comment> findByIdAndPostId(Long id, Long postId);
 }

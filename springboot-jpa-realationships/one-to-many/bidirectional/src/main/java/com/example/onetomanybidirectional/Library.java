@@ -16,7 +16,8 @@ public class Library {
     private String name;
 
     @OneToMany(mappedBy = "library", cascade = CascadeType.ALL)
-    private Set<Book> books = new HashSet<>() ;
+    private Set<Book> books = new HashSet<>();
+
     public int getId() {
         return id;
     }
@@ -39,7 +40,7 @@ public class Library {
 
     public void setBooks(Set<Book> books) {
         this.books = books;
-        for(Book b : books) {
+        for (Book b : books) {
             b.setLibrary(this);
         }
     }

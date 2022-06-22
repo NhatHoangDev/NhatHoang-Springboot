@@ -129,51 +129,61 @@
         <div>{{ employee.salary }}<span class="glyphicon glyphicon-euro"></span></div>
         <br/>
         <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
-        <a><router-link to="/">Back to employee list</router-link></a>
+        <a>
+            <router-link to="/">Back to employee list</router-link>
+        </a>
     </div>
 </template>
 
-<template id="employee-list"><div>
-    <div class="actions">
-        <a class="btn btn-default" >
-            <router-link :to="{path: '/add-employee'}">
-                <span class="glyphicon glyphicon-plus"></span>
-                Add employee
-            </router-link>
-        </a>
-    </div>
-    <div class="filters row">
-        <div class="form-group col-sm-3">
-            <label for="search-element">Employee name</label>
-            <input v-model="searchKey" class="form-control" id="search-element" requred/>
+<template id="employee-list">
+    <div>
+        <div class="actions">
+            <a class="btn btn-default">
+                <router-link :to="{path: '/add-employee'}">
+                    <span class="glyphicon glyphicon-plus"></span>
+                    Add employee
+                </router-link>
+            </a>
         </div>
+        <div class="filters row">
+            <div class="form-group col-sm-3">
+                <label for="search-element">Employee name</label>
+                <input v-model="searchKey" class="form-control" id="search-element" requred/>
+            </div>
+        </div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Salary</th>
+                <th class="col-sm-2">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr v-for="employee in filteredProducts">
+                <!-- tr v-for="product in products" -->
+                <!-- tr v-for="product in products | filterBy searchKey in 'name'" -->
+                <td>
+                    <a>
+                        <router-link :to="{name: 'employee', params: {employee_id: employee.id}}">{{ employee.name }}
+                        </router-link>
+                    </a>
+                </td>
+                <td>
+                    {{ employee.salary }}
+                    <span class="glyphicon glyphicon-euro" aria-hidden="true"></span>
+                </td>
+                <td>
+                    <a class="btn btn-warning btn-xs">
+                        <router-link :to="{name: 'employee-edit', params: {employee_id: employee.id}}">Edit
+                        </router-link>
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
     </div>
-    <table class="table">
-        <thead>
-        <tr>
-            <th>Name</th>
-            <th>Salary</th>
-            <th class="col-sm-2">Actions</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr v-for="employee in filteredProducts">
-            <!-- tr v-for="product in products" -->
-            <!-- tr v-for="product in products | filterBy searchKey in 'name'" -->
-            <td>
-                <a><router-link :to="{name: 'employee', params: {employee_id: employee.id}}">{{ employee.name }}</router-link></a>
-            </td>
-            <td>
-                {{ employee.salary }}
-                <span class="glyphicon glyphicon-euro" aria-hidden="true"></span>
-            </td>
-            <td>
-                <a class="btn btn-warning btn-xs"><router-link :to="{name: 'employee-edit', params: {employee_id: employee.id}}">Edit</router-link></a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-</div></template>
+</template>
 
 
 <template id="add-employee">
@@ -189,7 +199,9 @@
                 <input type="number" class="form-control" id="add-salary" v-model="employee.salary"/>
             </div>
             <button type="submit" class="btn btn-primary">Create</button>
-            <a class="btn btn-default"><router-link to="/">Cancel</router-link></a>
+            <a class="btn btn-default">
+                <router-link to="/">Cancel</router-link>
+            </a>
         </form>
     </div>
 </template>
@@ -207,7 +219,9 @@
                 <input type="number" class="form-control" id="edit-salary" v-model="employee.salary"/>
             </div>
             <button type="submit" class="btn btn-primary">Save</button>
-            <a class="btn btn-default"><router-link to="/">Cancel</router-link></a>
+            <a class="btn btn-default">
+                <router-link to="/">Cancel</router-link>
+            </a>
         </form>
     </div>
 </template>

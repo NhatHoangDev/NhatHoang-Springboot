@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
+
 @Slf4j
 @RequiredArgsConstructor
 @RestController
@@ -16,6 +17,7 @@ import java.util.Optional;
 public class ProductAPI {
     private final ProductService productService;
     private final IProductMapper mapper;
+
     /*@PostMapping
     public ResponseEntity<ProductDTO> create(@Valid @RequestBody ProductDTO productDTO){
         productService.save(mapper.toProduct(productDTO));
@@ -42,7 +44,7 @@ public class ProductAPI {
         return ResponseEntity.status(HttpStatus.ACCEPTED).build();
     }*/
     @GetMapping("/")
-    public ResponseEntity<List<ProductDTO>> getAll(){
+    public ResponseEntity<List<ProductDTO>> getAll() {
         return ResponseEntity.ok(mapper.toProductDtos(productService.findAll()));
     }
    /* @GetMapping("/{id}")

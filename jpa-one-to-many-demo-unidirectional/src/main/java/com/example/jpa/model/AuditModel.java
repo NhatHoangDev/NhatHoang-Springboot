@@ -7,6 +7,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.MappedSuperclass;
 import java.util.Date;
+
 @Data
 @MappedSuperclass
 @JsonIgnoreProperties(value = {"createdAt", "updatedAt"}, allowGetters = true)

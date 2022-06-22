@@ -10,16 +10,20 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class ProductService {
     private final IProductRepository productRepository;
-    public List<Product> findAll(){
+
+    public List<Product> findAll() {
         return productRepository.findAll();
     }
-    public Optional<Product> findById(Long id){
+
+    public Optional<Product> findById(Long id) {
         return productRepository.findById(id);
     }
-    public Product save(Product product){
+
+    public Product save(Product product) {
         return productRepository.save(product);
     }
-    void removeById(Long id){
+
+    void removeById(Long id) {
         productRepository.deleteById(id);
     }
 }

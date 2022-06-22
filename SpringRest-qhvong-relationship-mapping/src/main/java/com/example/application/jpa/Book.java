@@ -10,9 +10,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Data
-@EqualsAndHashCode(callSuper = false, exclude ={"category","authors","bookPublishers"})
+@EqualsAndHashCode(callSuper = false, exclude = {"category", "authors", "bookPublishers"})
 @Entity
-public class Book extends Abstract{
+public class Book extends Abstract {
 
     private String name;
     private String description;
@@ -24,8 +24,8 @@ public class Book extends Abstract{
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "book_author",
-        joinColumns = @JoinColumn(name = "book_id", referencedColumnName = "id"),
-        inverseJoinColumns = @JoinColumn(name = "author_id", referencedColumnName = "id"))
+            joinColumns = @JoinColumn(name = "book_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "author_id", referencedColumnName = "id"))
     @JsonIgnoreProperties("books")
     private Set<Author> authors;
 

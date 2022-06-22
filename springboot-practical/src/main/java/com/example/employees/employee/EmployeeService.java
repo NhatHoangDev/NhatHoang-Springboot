@@ -9,7 +9,7 @@ import java.util.Optional;
 @Service
 public class EmployeeService implements IEmployeeService {
     @Autowired
-    private  IEmployeeRepository employeeRepository;
+    private IEmployeeRepository employeeRepository;
 
     @Override
     public List<Employee> findAll() {

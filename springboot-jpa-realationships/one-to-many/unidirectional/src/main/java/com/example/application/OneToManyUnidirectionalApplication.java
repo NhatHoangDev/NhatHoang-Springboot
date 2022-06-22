@@ -13,13 +13,14 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @SpringBootApplication
 public class OneToManyUnidirectionalApplication {
     @Bean
-    public Docket swagger(){
+    public Docket swagger() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
                 .apis(RequestHandlerSelectors.any())
                 .paths(PathSelectors.any())
                 .build();
     }
+
     public static void main(String[] args) {
         SpringApplication.run(OneToManyUnidirectionalApplication.class, args);
     }

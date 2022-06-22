@@ -10,13 +10,14 @@ import org.springframework.stereotype.Service;
 import java.util.HashSet;
 
 @Service
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
     @Autowired
     private IUserRepository userRepository;
     @Autowired
     private IRoleRepository roleRepository;
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
+
     @Override
     public void save(User user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));

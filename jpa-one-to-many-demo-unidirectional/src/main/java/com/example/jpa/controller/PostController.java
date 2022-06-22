@@ -16,16 +16,19 @@ import javax.validation.Valid;
 public class PostController {
     @Autowired
     private IPostRepository postRepository;
+
     @GetMapping
-    public Page<Post> getAllPosts(Pageable pageable){
+    public Page<Post> getAllPosts(Pageable pageable) {
         return postRepository.findAll(pageable);
     }
+
     @PostMapping
-    public Post createPost(@Valid @RequestBody Post post){
+    public Post createPost(@Valid @RequestBody Post post) {
         return postRepository.save(post);
     }
+
     @PutMapping("/{id}")
-    public Post updatePost(@PathVariable Long id, @Valid @RequestBody Post postRequest){
+    public Post updatePost(@PathVariable Long id, @Valid @RequestBody Post postRequest) {
         return postRepository.findById(id).map(post -> {
             post.setTitle(postRequest.getTitle());
             post.setDescription(postRequest.getDescription());
@@ -33,6 +36,7 @@ public class PostController {
             return postRepository.save(post);
         }).orElseThrow(() -> new ResourceNotFoundException("PostId " + id + " not found"));
     }
+
     @DeleteMapping("/posts/{postId}")
     public ResponseEntity<?> deletePost(@PathVariable Long postId) {
         return postRepository.findById(postId).map(post -> {

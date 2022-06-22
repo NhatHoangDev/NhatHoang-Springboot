@@ -19,8 +19,9 @@ import java.util.Optional;
 public class LibraryController {
     private final ILibraryRepository libraryRepository;
     private final IBookRepository bookRepository;
+
     @PostMapping("/")
-    public ResponseEntity<Library> create(@Valid @RequestBody Library library){
+    public ResponseEntity<Library> create(@Valid @RequestBody Library library) {
         Library savedLibrary = libraryRepository.save(library);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
@@ -28,27 +29,30 @@ public class LibraryController {
                 .toUri();
         return ResponseEntity.created(location).body(savedLibrary);
     }
+
     @PutMapping("/{id}")
-    public ResponseEntity<Library> update(@PathVariable Integer id,@Valid @RequestBody Library library){
+    public ResponseEntity<Library> update(@PathVariable Integer id, @Valid @RequestBody Library library) {
         Optional<Library> libraryOptional = libraryRepository.findById(id);
-        if (!libraryOptional.isPresent()){
+        if (!libraryOptional.isPresent()) {
             return ResponseEntity.unprocessableEntity().build();
         }
         library.setId(libraryOptional.get().getId());
         libraryRepository.save(library);
         return ResponseEntity.noContent().build();
     }
+
     @DeleteMapping("/{id}")
-    public ResponseEntity<Library> deleteById(@PathVariable Integer id){
+    public ResponseEntity<Library> deleteById(@PathVariable Integer id) {
         Optional<Library> libraryOptional = libraryRepository.findById(id);
-        if (!libraryOptional.isPresent()){
+        if (!libraryOptional.isPresent()) {
             return ResponseEntity.unprocessableEntity().build();
         }
         deleteByIdInTransactional(libraryOptional.get());
         return ResponseEntity.noContent().build();
     }
+
     @Transactional
-    public void deleteByIdInTransactional(Library library){
+    public void deleteByIdInTransactional(Library library) {
         bookRepository.deleteByLibraryId(library.getId());
         libraryRepository.delete(library);
     }
@@ -56,12 +60,13 @@ public class LibraryController {
     @GetMapping("/{id}")
     public ResponseEntity<Library> getById(@PathVariable Integer id) {
         Optional<Library> libraryOptional = libraryRepository.findById(id);
-        if (!libraryOptional.isPresent()){
+        if (!libraryOptional.isPresent()) {
             return ResponseEntity.unprocessableEntity().build();
         }
 
         return ResponseEntity.ok(libraryOptional.get());
     }
+
     @GetMapping("/")
     public ResponseEntity<Page<Library>> getAll(Pageable pageable) {
         return ResponseEntity.ok(libraryRepository.findAll(pageable));

@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
+
 @NoArgsConstructor
 @Entity
 @Data
@@ -17,6 +18,7 @@ public class Publisher {
     private String name;
     @ManyToMany(mappedBy = "publishers")
     private Set<Book> books = new HashSet<>();
+
     public Publisher(String name) {
         this.name = name;
     }

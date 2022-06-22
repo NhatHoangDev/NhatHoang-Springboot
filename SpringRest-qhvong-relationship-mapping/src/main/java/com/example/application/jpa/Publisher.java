@@ -14,7 +14,7 @@ import java.util.Set;
 @Entity
 @Data
 @EqualsAndHashCode(exclude = {"bookPublishers"}, callSuper = false)
-public class Publisher extends Abstract{
+public class Publisher extends Abstract {
 
     private String name;
 

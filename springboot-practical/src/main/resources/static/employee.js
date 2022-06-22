@@ -1,10 +1,10 @@
 var employees = [];
 
-function findEmployee (employeeId) {
+function findEmployee(employeeId) {
     return employees[findEmployeeKey(employeeId)];
 }
 
-function findEmployeeKey (employeeId) {
+function findEmployeeKey(employeeId) {
     for (var key = 0; key < employees.length; key++) {
         if (employees[key].id == employeeId) {
             return key;
@@ -50,7 +50,10 @@ var List = Vue.extend({
         }
     },
     mounted() {
-        employeeService.findAll(r => {this.employees = r.data; employees = r.data})
+        employeeService.findAll(r => {
+            this.employees = r.data;
+            employees = r.data
+        })
     }
 });
 

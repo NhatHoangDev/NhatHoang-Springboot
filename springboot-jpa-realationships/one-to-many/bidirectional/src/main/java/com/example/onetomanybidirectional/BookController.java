@@ -18,7 +18,7 @@ public class BookController {
     private final LibraryRepository libraryRepository;
 
     @Autowired
-    public BookController(BookRepository bookRepository,LibraryRepository libraryRepository) {
+    public BookController(BookRepository bookRepository, LibraryRepository libraryRepository) {
         this.bookRepository = bookRepository;
         this.libraryRepository = libraryRepository;
     }
@@ -34,7 +34,7 @@ public class BookController {
 
         Book savedBook = bookRepository.save(book);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-            .buildAndExpand(savedBook.getId()).toUri();
+                .buildAndExpand(savedBook.getId()).toUri();
 
         return ResponseEntity.created(location).body(savedBook);
     }

@@ -12,7 +12,7 @@ import java.util.Date;
 @EqualsAndHashCode(callSuper = false)
 @Entity
 @Data
-public class BookPublisher extends Abstract{
+public class BookPublisher extends Abstract {
 
 
     @ManyToOne

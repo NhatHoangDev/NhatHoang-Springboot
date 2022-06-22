@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+
 @RequestMapping("/api/v1/comments")
 @RestController
 public class CommentController {
@@ -22,13 +23,13 @@ public class CommentController {
     private IPostRepository postRepository;
 
     @GetMapping("/posts/{id}")
-    public Page<Comment> getAllCommentsByPostId(@PathVariable (value = "postId") Long postId,
+    public Page<Comment> getAllCommentsByPostId(@PathVariable(value = "postId") Long postId,
                                                 Pageable pageable) {
         return commentRepository.findByPostId(postId, pageable);
     }
 
     @PostMapping("/{post_id}")
-    public Comment createComment(@PathVariable (value = "postId") Long postId,
+    public Comment createComment(@PathVariable(value = "postId") Long postId,
                                  @Valid @RequestBody Comment comment) {
         return postRepository.findById(postId).map(post -> {
             comment.setPost(post);
@@ -37,10 +38,10 @@ public class CommentController {
     }
 
     @PutMapping("/posts/{postId}/comments/{commentId}")
-    public Comment updateComment(@PathVariable (value = "postId") Long postId,
-                                 @PathVariable (value = "commentId") Long commentId,
+    public Comment updateComment(@PathVariable(value = "postId") Long postId,
+                                 @PathVariable(value = "commentId") Long commentId,
                                  @Valid @RequestBody Comment commentRequest) {
-        if(!postRepository.existsById(postId)) {
+        if (!postRepository.existsById(postId)) {
             throw new ResourceNotFoundException("PostId " + postId + " not found");
         }
 
@@ -51,8 +52,8 @@ public class CommentController {
     }
 
     @DeleteMapping("/posts/{postId}/comments/{commentId}")
-    public ResponseEntity<?> deleteComment(@PathVariable (value = "postId") Long postId,
-                                           @PathVariable (value = "commentId") Long commentId) {
+    public ResponseEntity<?> deleteComment(@PathVariable(value = "postId") Long postId,
+                                           @PathVariable(value = "commentId") Long commentId) {
         return commentRepository.findByIdAndPostId(commentId, postId).map(comment -> {
             commentRepository.delete(comment);
             return ResponseEntity.ok().build();

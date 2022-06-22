@@ -14,6 +14,7 @@ import javax.validation.Valid;
 public class UserController {
     @Autowired
     private IUserRepository userRepository;
+
     @GetMapping("/signup")
     public String showSignUpForm(User user) {
         return "add-user";
@@ -28,11 +29,13 @@ public class UserController {
         userRepository.save(user);
         return "redirect:/index";
     }
+
     @GetMapping("/index")
     public String showUserList(Model model) {
         model.addAttribute("users", userRepository.findAll());
         return "index";
     }
+
     @GetMapping("/edit/{id}")
     public String showUpdateForm(@PathVariable("id") long id, Model model) {
         User user = userRepository.findById(id)
@@ -41,6 +44,7 @@ public class UserController {
         model.addAttribute("user", user);
         return "update-user";
     }
+
     @PostMapping("/update/{id}")
     public String updateUser(@PathVariable("id") long id, @Valid User user,
                              BindingResult result, Model model) {
