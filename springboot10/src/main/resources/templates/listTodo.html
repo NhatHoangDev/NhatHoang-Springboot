@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta http-equiv="content-type" content="text/html"; charset="UTF-8"/>
+    <link type="text/css" rel="stylesheet" th:href="@{/css/bootstrap.css}">
+    <link type="text/css" rel="stylesheet" th:href="@{/css/main.css}">
+    <script th:src="@{/js/bootstrap.js}"></script>
+</head>
+<body>
+    <h1>Danh sách việc cần làm</h1>
+    <ul>
+        <li th:each="todo : ${todoList}">
+            <span th:text="*{todo.getTitle()}"></span> : <span th:text="*{todo.getDetail()}"></span>
+        </li>
+    </ul>
+    <a th:href="@{/addTodo}" class="btn btn-success">Add todo</a>
+</body>
+</html>
